@@ -71,9 +71,10 @@ public class DrawView extends View {
         canvas.drawText("CONNECT 4!", 25 * getWidth() / 1440, 1000 * getHeight() / 2560, nam);
         //Check 4 in a row
 
-        if (chipCount % 2 == 0) {
-            playerWin = 0;
-        }else playerWin = 1;
+//        if (chipCount % 2 == 0) {
+//            playerWin = 0;
+//        }else playerWin = 1;
+
         invalidate();
 
     }
