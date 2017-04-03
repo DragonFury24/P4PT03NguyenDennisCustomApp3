@@ -24,10 +24,6 @@ public class DrawView extends View {
     private int turnCount;
     private int playerWin; //1 = Red wins, 2 = Black wins
     private boolean gameOver = false;
-    private int chip0;
-    private int chip1;
-    private int chip2;
-    private int chip3;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -75,26 +71,6 @@ public class DrawView extends View {
         canvas.drawText("CONNECT 4!", 25 * getWidth() / 1440, 1000 * getHeight() / 2560, nam);
 
         //Check vertical 4 in a rows
-//        if (!gameOver) {
-//            for (int col = 0; col < COL; col++) {
-//                for (int row = 0; row <= ROW-4; row++) {
-//                    chip0 = squares[row][col].getState();
-//                    chip1 = squares[row+1][col].getState();
-//                    chip2 = squares[row+2][col].getState();
-//                    chip3 = squares[row+3][col].getState();
-//                    if (chip0 + chip1 + chip2 + chip3 == 4) {
-//                        gameOver = true;
-//                        playerWin = 1;
-//                        break;
-//                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
-//                        gameOver = true;
-//                        playerWin = 2;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
         if (!gameOver) {
             for (int col = 0; col < COL; col++) {
                 for (int row = 0; row <= ROW-4; row++) {
@@ -112,26 +88,6 @@ public class DrawView extends View {
         }
 
         //Check horizontal 4 in a rows
-//        if (!gameOver) {
-//            for (int row = 0; row < ROW; row ++) {
-//                for (int col = 0; col <= COL-4; col++) {
-//                    chip0 = squares[row][col].getState();
-//                    chip1 = squares[row][col+1].getState();
-//                    chip2 = squares[row][col+2].getState();
-//                    chip3 = squares[row][col+3].getState();
-//                    if (chip0 + chip1 + chip2 + chip3 == 4) {
-//                        gameOver = true;
-//                        playerWin = 1;
-//                        break;
-//                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
-//                        gameOver = true;
-//                        playerWin = 2;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
         if (!gameOver) {
             for (int row = 0; row < ROW; row ++) {
                 for (int col = 0; col <= COL-4; col++) {
@@ -148,26 +104,6 @@ public class DrawView extends View {
             }
         }
         //Check diagonal 4 in a rows (LEFT TO RIGHT)
-//        if (!gameOver) {
-//            for (int col = 0; col <= COL-4; col++) {
-//                for (int row = 0; row <= ROW-4; row++) {
-//                    chip0 = squares[row][col].getState();
-//                    chip1 = squares[row+1][col+1].getState();
-//                    chip2 = squares[row+2][col+2].getState();
-//                    chip3 = squares[row+3][col+3].getState();
-//                    if (chip0 + chip1 + chip2 + chip3 == 4) {
-//                        gameOver = true;
-//                        playerWin = 1;
-//                        break;
-//                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
-//                        gameOver = true;
-//                        playerWin = 2;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
         if (!gameOver) {
             for (int col = 0; col <= COL-4; col++) {
                 for (int row = 0; row <= ROW-4; row++) {
@@ -185,26 +121,6 @@ public class DrawView extends View {
         }
 
         //Check diagonal 4 in a rows (RIGHT TO LEFT)
-//        if (!gameOver) {
-//            for (int col = COL-1; col >= 3; col--) {
-//                for (int row = 0; row <= ROW-4; row++) {
-//                    chip0 = squares[row][col].getState();
-//                    chip1 = squares[row+1][col-1].getState();
-//                    chip2 = squares[row+2][col-2].getState();
-//                    chip3 = squares[row+3][col-3].getState();
-//                    if (chip0 + chip1 + chip2 + chip3 == 4) {
-//                        gameOver = true;
-//                        playerWin = 1;
-//                        break;
-//                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
-//                        gameOver = true;
-//                        playerWin = 2;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
         if (!gameOver) {
             for (int col = COL-1; col >= 3; col--) {
                 for (int row = 0; row <= ROW-4; row++) {
