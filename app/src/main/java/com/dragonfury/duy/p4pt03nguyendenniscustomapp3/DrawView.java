@@ -156,15 +156,6 @@ public class DrawView extends View {
                 }
             }
         }
-        //Player1 win game over action
-        if (gameOver && playerWin == 1) {
-            nam.setTextSize(245 * getWidth() / 1440);
-            nam.setColor(Color.RED);
-            //canvas.drawRect(0, 0, getWidth(), getHeight(), nam);
-            nam.setColor(Color.WHITE);
-            canvas.drawText("GAME OVER!", 0, getHeight() / 2, nam);
-            canvas.drawText("RED WINS!", 0, 2 * getHeight() / 3, nam);
-        }
 
         //Game over action
         if (gameOver) {
