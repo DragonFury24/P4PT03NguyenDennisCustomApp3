@@ -22,8 +22,12 @@ public class DrawView extends View {
     private Cell[][] squares = new Cell[ROW][COL];
     private RectF board;
     private int turnCount;
-    private int playerWin;
-    private int chipCount;
+    private int playerWin; //1 = Red wins, 2 = Black wins
+    private boolean gameOver = false;
+    private int chip0;
+    private int chip1;
+    private int chip2;
+    private int chip3;
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -69,12 +73,112 @@ public class DrawView extends View {
         nam.setTextSize(245 * getWidth() / 1440);
         nam.setColor(Color.BLUE);
         canvas.drawText("CONNECT 4!", 25 * getWidth() / 1440, 1000 * getHeight() / 2560, nam);
-        //Check 4 in a row
 
-//        if (chipCount % 2 == 0) {
-//            playerWin = 0;
-//        }else playerWin = 1;
+        //Check vertical 4 in a rows
+        if (!gameOver) {
+            for (int col = 0; col < COL; col++) {
+                for (int row = 0; row <= ROW-4; row++) {
+                    chip0 = squares[row][col].getState();
+                    chip1 = squares[row+1][col].getState();
+                    chip2 = squares[row+2][col].getState();
+                    chip3 = squares[row+3][col].getState();
+                    if (chip0 + chip1 + chip2 + chip3 == 4) {
+                        gameOver = true;
+                        playerWin = 1;
+                        break;
+                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
+                        gameOver = true;
+                        playerWin = 2;
+                        break;
+                    }
+                }
+            }
+        }
 
+        //Check horizontal 4 in a rows
+        if (!gameOver) {
+            for (int row = 0; row < ROW; row ++) {
+                for (int col = 0; col <= COL-4; col++) {
+                    chip0 = squares[row][col].getState();
+                    chip1 = squares[row][col+1].getState();
+                    chip2 = squares[row][col+2].getState();
+                    chip3 = squares[row][col+3].getState();
+                    if (chip0 + chip1 + chip2 + chip3 == 4) {
+                        gameOver = true;
+                        playerWin = 1;
+                        break;
+                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
+                        gameOver = true;
+                        playerWin = 2;
+                        break;
+                    }
+                }
+            }
+        }
+        //Check diagonal 4 in a rows (LEFT TO RIGHT)
+        if (!gameOver) {
+            for (int col = 0; col <= COL-4; col++) {
+                for (int row = 0; row <= ROW-4; row++) {
+                    chip0 = squares[row][col].getState();
+                    chip1 = squares[row+1][col+1].getState();
+                    chip2 = squares[row+2][col+2].getState();
+                    chip3 = squares[row+3][col+3].getState();
+                    if (chip0 + chip1 + chip2 + chip3 == 4) {
+                        gameOver = true;
+                        playerWin = 1;
+                        break;
+                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
+                        gameOver = true;
+                        playerWin = 2;
+                        break;
+                    }
+                }
+            }
+        }
+
+        //Check diagonal 4 in a rows (RIGHT TO LEFT)
+        if (!gameOver) {
+            for (int col = COL-1; col >= 3; col--) {
+                for (int row = 0; row <= ROW-4; row++) {
+                    chip0 = squares[row][col].getState();
+                    chip1 = squares[row+1][col-1].getState();
+                    chip2 = squares[row+2][col-2].getState();
+                    chip3 = squares[row+3][col-3].getState();
+                    if (chip0 + chip1 + chip2 + chip3 == 4) {
+                        gameOver = true;
+                        playerWin = 1;
+                        break;
+                    } else if (chip0 + chip1 + chip2 + chip3 == 8) {
+                        gameOver = true;
+                        playerWin = 2;
+                        break;
+                    }
+                }
+            }
+        }
+        //Player1 win game over action
+        if (gameOver && playerWin == 1) {
+            nam.setTextSize(245 * getWidth() / 1440);
+            nam.setColor(Color.RED);
+            //canvas.drawRect(0, 0, getWidth(), getHeight(), nam);
+            nam.setColor(Color.WHITE);
+            canvas.drawText("GAME OVER!", 0, getHeight() / 2, nam);
+            canvas.drawText("RED WINS!", 0, 2 * getHeight() / 3, nam);
+        }
+
+        //Game over action
+        if (gameOver) {
+            nam.setTextSize(245 * getWidth() / 1440);
+            nam.setColor(Color.RED);
+            canvas.drawRect(0, 0, getWidth(), getHeight(), nam);
+            nam.setColor(Color.WHITE);
+            canvas.drawText("GAME OVER!", 0, getHeight() / 2, nam);
+            if (playerWin == 1) {
+                canvas.drawText("RED WINS!", 0, 2 * getHeight() / 3, nam);
+            }else if (playerWin == 2) {
+                canvas.drawText("BLACK WINS!", 0, 2 * getHeight() / 3, nam);
+            }
+        }
         invalidate();
 
     }
@@ -111,3 +215,4 @@ public class DrawView extends View {
         return super.onTouchEvent(event);
     }
 }
+

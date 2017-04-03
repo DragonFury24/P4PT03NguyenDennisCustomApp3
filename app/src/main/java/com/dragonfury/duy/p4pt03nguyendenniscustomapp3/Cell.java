@@ -28,12 +28,12 @@ public class Cell extends RectF {
         c.drawRect(this, p);
 
         //Draw Black Circle or Red Circle depending on player turn
-        if (state==0) {
+        if (state==1) {
             p.setStyle(Paint.Style.FILL);
             p.setColor(Color.RED);
             c.drawCircle(centerX(), centerY(), width()/2, p);
         }
-        if (state==1) {
+        if (state==2) {
             p.setStyle(Paint.Style.FILL);
             p.setColor(Color.BLACK);
             c.drawCircle(centerX(), centerY(), width()/2, p);
@@ -45,7 +45,7 @@ public class Cell extends RectF {
     }
 
     public void assignState(int turnCount) {
-        state = turnCount%2 ;
+        state = turnCount%2 + 1;
     }
 
     public int getState(){
@@ -53,7 +53,4 @@ public class Cell extends RectF {
     }
 
 }
-
-
-
 
