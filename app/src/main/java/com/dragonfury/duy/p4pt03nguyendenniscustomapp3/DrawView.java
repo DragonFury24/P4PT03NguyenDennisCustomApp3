@@ -24,6 +24,8 @@ public class DrawView extends View {
     private int turnCount;
     private int playerWin; //1 = Red wins, 2 = Black wins
     private boolean gameOver = false;
+    private boolean resetGame = false;
+    private RectF resetGameBox = new RectF(100 * getWidth() / 1440, 200 * getHeight() / 2560, 1000 * getWidth() / 1440, 2000 * getHeight() / 2560);
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -150,6 +152,14 @@ public class DrawView extends View {
                 canvas.drawText("BLACK WINS!", 0, 2 * getHeight() / 3, nam);
             }
         }
+
+        //Draw reset game text box
+        nam.setColor(Color.BLACK);
+        nam.setStyle(Paint.Style.FILL);
+        canvas.drawRect(resetGameBox, nam);
+        nam.setColor(Color.WHITE);
+        nam.setTextSize(245 * getWidth() / 1440);
+        canvas.drawText("Reset Game", resetGameBox.left, resetGameBox.height() / 2, nam);
         invalidate();
 
     }
@@ -183,7 +193,15 @@ public class DrawView extends View {
                 break;
             }
         }
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+        }
         return super.onTouchEvent(event);
+    }
+
+    public boolean resetGame(){
+        return resetGame;
     }
 }
 
