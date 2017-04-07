@@ -24,7 +24,7 @@ public class DrawView extends View {
     private int turnCount;
     private int playerWin=1; //1 = Red wins, 2 = Black wins
     private boolean gameOver = true;
-    private boolean resetGame = false;
+    private boolean resetGame = true;
     private RectF resetGameBox = new RectF(100 * getHeight() / 2560, 200, 300, 400);
     @Override
     protected void onDraw(Canvas canvas) {
