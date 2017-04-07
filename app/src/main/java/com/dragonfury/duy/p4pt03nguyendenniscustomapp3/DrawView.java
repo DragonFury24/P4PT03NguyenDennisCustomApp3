@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by Duy on 3/28/2017.
@@ -24,12 +25,14 @@ public class DrawView extends View {
     private int turnCount;
     private int playerWin=1; //1 = Red wins, 2 = Black wins
     private boolean gameOver = true;
-    private boolean resetGame = true;
-    private RectF resetGameBox = new RectF(100 * getHeight() / 2560, 200, 300, 400);
+    private boolean resetGame = false;
+    private RectF resetGameBox = new RectF();
+
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
 
         //Draw Big Board
         nam.setColor(Color.YELLOW);
@@ -153,14 +156,15 @@ public class DrawView extends View {
             }
             nam.setColor(Color.BLACK);
             nam.setStyle(Paint.Style.FILL);
-            canvas.drawRect(resetGameBox, nam);
-            nam.setColor(Color.WHITE);
-            nam.setTextSize(245 * getWidth() / 1440);
-            canvas.drawText("Reset Game", resetGameBox.left, resetGameBox.height() / 2, nam);
+
         }
 
         //Draw reset game text box
-
+        nam.setColor(Color.YELLOW);
+        canvas.drawRect(resetGameBox, nam);
+        nam.setColor(Color.BLUE);
+        nam.setTextSize(100 * getWidth() / 1440);
+        canvas.drawText("Reset Game", resetGameBox.centerX(), resetGameBox.centerY(), nam);
         invalidate();
 
     }
@@ -174,6 +178,9 @@ public class DrawView extends View {
                 squares[j][i] = new Cell((board.width() / COL) * i, (board.height() / ROW) * j + board.top, (board.width() / COL) * (i + 1), (board.height() / ROW) * (j + 1) + board.top);
             }
         }
+
+        //Set value of reset box
+        resetGameBox.set(0 * getWidth() / 1440, 600 * getHeight() / 2560, 1440 * getWidth() / 1440, 800 * getWidth() / 1440);
     }
 
     @Override

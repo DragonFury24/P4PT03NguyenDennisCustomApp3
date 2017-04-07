@@ -9,6 +9,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new DrawView(this));
+        DrawView drawView = new DrawView(this);
+        if (drawView.resetGame()){
+            finish();
+        }
     }
 }
 
