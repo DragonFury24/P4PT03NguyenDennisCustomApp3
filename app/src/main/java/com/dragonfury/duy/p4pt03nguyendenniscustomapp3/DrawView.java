@@ -180,7 +180,7 @@ public class DrawView extends View {
         }
 
         //Set value of reset box
-        resetGameBox.set(0 * getWidth() / 1440, 600 * getHeight() / 2560, 1440 * getWidth() / 1440, 800 * getWidth() / 1440);
+        resetGameBox.set(200 * getWidth() / 1440, 600 * getHeight() / 2560, 1440 * getWidth() / 1440, 800 * getWidth() / 1440);
     }
 
     @Override
@@ -212,4 +212,3 @@ public class DrawView extends View {
         return resetGame;
     }
 }
-
